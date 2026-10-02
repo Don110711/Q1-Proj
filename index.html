@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1 Project</title>
+    <link rel="stylesheet" href="styles_Q1Project.css">
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="https://www.shutterstock.com/image-photo/mint-chocolate-chip-ice-cream-260nw-593914388.jpg" alt="Profile Picture" style="width: 200px; height: 200px; border-radius: 50%;">
+        
+            <ul class="navlinks">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#works">My Works</a></li>
+                <li><a href="#contact    ">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="https://i.pinimg.com/736x/5c/25/bc/5c25bc66212c80d3eaa975f871cbdbb4.jpg" width="200" height="200" alt="Profile Picture">
+        <h1>Don Medrano</h1>
+        <p>Hi, I'm Don Medrano, a passionate web developer. Yet i am still learning, i aspire to become</p>
+    </section>
+
+    <section id="about">
+        <h1>About Me</h1>
+        <p>I am a dedicated web developer with a passion for creating engaging and user-friendly website</p>
+    </section>
+
+    <section id="works">
+        <h1>My Works</h1>
+        <div class="works-gallery">
+            <div class="work-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT09hbeNynHnJfZR6kFpD3110k5LodWCXIQ8dR0L0DMLQ&s=10">
+                <p></p>
+            </div>
+
+            <div class="work-item">
+                <ul>
+                    <li>Figma</li>
+                    <li>App Recommendations</li>
+                    <li>Posters, Design, websites</li>
+                    <li><a href="">View</a></li>
+                </ul>
+            </div>
+
+            <div class="work-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE8yJ8O5kGypVGAgnm6zubPsVMDwe5jNeNbIJOO2GeYg&s=10">
+                <p></p>
+            </div>
+
+            <div class="work-item">
+                <ul>
+                    <li>Scratch</li>
+                    <li>App Recommendations</li>
+                    <li>Games, design, animations</li>
+                    <li><a href="">View</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="form-container">
+            <form id="radioForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="NAME" required>
+                <br>
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="EMAIL@gmail.com" required>
+                <br>
+
+                <label>How did you find me?</label>
+                <div class="option-group">
+                    <label>
+                        <input type="radio" name="radioOption" value="DC" required onclick="handleOptionChange()">
+                        1. Facebook
+                    </label>
+                </div>
+
+                <div class="option-group">
+                    <label>
+                        <input type="radio" name="radioOption" value="PC" onclick="handleOptionChange()">
+                        2. Articles
+                    </label>
+                </div>
+
+                <div class="option-group">
+                    <label>
+                        <input type="radio" name="radioOption" value="Other" id="otherRadio" onclick="handleOptionChange()">
+                        3. Other
+                    </label>
+                </div>
+
+                <div id="otherInputContainer" style="display: none;">
+                    <input type="text" id="otherTextField" name="otherText" placeholder="Please enter details">
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <br>
+
+    <label>Interested in:</label>
+    <div class="checkbox-group">
+        <input type="checkbox" id="ch1" name="interests" value="checkbox1">
+        <label for="ch1">web Design</label>
+
+        <input type="checkbox" id="ch2" name="interests" value="checkbox2">
+        <label for="ch2">Graphics Design</label>
+
+        <input type="checkbox" id="ch3" name="interests" value="checkbox3">
+        <label for="ch3">Robotics</label>
+    </div>
+
+    <br>
+
+    <label for="selection">Rate My Portfolio</label>
+    <select id="selection" name="selection" required>
+        <option value="">--Select Rating--</option>
+        <option value="1">bad</option>
+        <option value="2">needs improvement</option>
+        <option value="3">alright</option>
+        <option value="4">excelent</option>
+        <option value="5">perfect</option>
+    </select>
+
+    <br>
+
+    <label for="feedback">Any Feedback?</label>
+    <textarea id="feedback" name="feedback" rows="4" placeholder="write your feedback here..."></textarea>
+
+    <br>
+
+    <button type="submit">Submit</button>
+
+    <footer>
+        <p>&copy; 2026 Don Medrano. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleOptionChange() {
+            const otherRadio = document.getElementById('otherRadio');
+            const inputContainer = document.getElementById('otherInputContainer');
+            const textField = document.getElementById('otherTextField');
+
+            // If "3. Other" is selected
+            if (otherRadio.checked) {
+                inputContainer.style.display = 'block'; // Show text box
+                textField.required = true;              // Make it mandatory
+                textField.focus();                      // Focus user's cursor inside
+            } else {
+                inputContainer.style.display = 'none';  // Hide text box
+                textField.required = false;             // Remove mandatory requirement
+                textField.value = '';                   // Clear previous input
+            }
+        }
+
+        // Form submission demonstration
+        document.getElementById('radioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selected = document.querySelector('input[name="radioOption"]:checked').value;
+
+            if (selected === 'Other') {
+                alert('Submitted: Other - "' + document.getElementById('otherTextField').value + '"');
+            } else {
+                alert('Submitted: ' + selected);
+            }
+        });
+    </script>
+</body>
+</html>
